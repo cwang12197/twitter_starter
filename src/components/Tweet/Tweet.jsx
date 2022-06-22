@@ -5,15 +5,22 @@ import "./Tweet.css"
 
 export default function Tweet({ tweet }) {
   return (
-    <div className="tweet" data-tweet-id={null}>
+    <div className="tweet"
+      data-tweet-id={tweet.id}>
       <div className="tweet-avatar">
         <AvatarIcon />
       </div>
 
       <div className="tweet-content">
-        <TweetUserInfo />
-        <p className="tweet-text"></p>
-        <TweetFooter />
+        <TweetUserInfo
+          name={tweet.name}
+          handle={tweet.handle}
+        />
+        <p className="tweet-text">{tweet.text}</p> 
+        <TweetFooter
+         numComments={tweet.comments}
+         numRetweets={tweet.retweets}
+         numLikes={tweet.likes}/>
       </div>
     </div>
   )
@@ -35,7 +42,8 @@ export function TweetUserInfo({ name, handle }) {
 
 export function TweetFooter({ numComments, numRetweets, numLikes }) {
   return (
-    <div className="tweet-footer">
+    <div className="tweet-footer"
+    >
       <span>
         <i className="fa fa-comment"></i>
         {numComments || 0}
